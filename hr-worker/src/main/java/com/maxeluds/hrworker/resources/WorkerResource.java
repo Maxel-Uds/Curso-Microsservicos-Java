@@ -18,11 +18,6 @@ import java.util.List;
 @RequestMapping(value = "/workers")
 public class WorkerResource {
 
-    private static Logger LOG = LoggerFactory.getLogger(WorkerResource.class);
-
-    @Autowired
-    private Environment env;
-
     @Autowired
     private WorkerRepository repository;
 
@@ -33,8 +28,6 @@ public class WorkerResource {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Worker> findById(@PathVariable Long id) {
-        LOG.info("PORT ==== [{}]", env.getProperty("local.server.port"));
-
         return ResponseEntity.ok(repository.findById(id).get());
     }
 }
